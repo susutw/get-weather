@@ -22,15 +22,14 @@ def main():
         if value == False:
             return
 
-        print(value)
-        # 回存
-        # result = DB.xxx
+        c_temp = round(value['temp'] - 273.15, 2) # 攝氏
         ts = int(time.time())
-        result = DB.insert_weather_info(value["city"], value["temp"], value["main"], ts)
+
+        result = DB.insert_weather_info(value['city'], value['temp'], value['main'], ts)
         return
     
     if action == 'weather_record':
-        DB.latest_five_value()
+        result = DB.latest_five_value()
     
     return
 
