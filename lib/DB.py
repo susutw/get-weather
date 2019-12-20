@@ -11,7 +11,8 @@ def latest_five_value():
     record_list = conn.execute(
         '''
         SELECT * from weather_list
-        ORDER BY create_timestamp DESC
+        GROUP BY city
+        ORDER BY MAX(create_timestamp) DESC
         LIMIT 5
         '''
     )
@@ -21,18 +22,17 @@ def latest_five_value():
         time_array = time.strftime("%Y/%m/%d %H:%M", time.localtime(row[4]))
         c_temp = round(row[2] - 273.15, 2)
         print('[ID:{}] => 城市：{}，溫度：{}，氣象：{}，查詢時間：{}。'.format(row[0], row[1], c_temp, row[3], time_array))
-
+    
     conn.commit()
     conn.close()
 
 # save to DB
 
 def insert_weather_info(city, temp, desc, ts):
-    # 要改成 IF 有這城市的資料 -> UPDATE
     conn.execute(
         '''
         INSERT INTO weather_list (city, temperature, description, create_timestamp, delete_timestamp)
-        VALUES (?, ?, ?, ?, 0);
+        VALUES (?, ?, ?, ?, 0)
         ''', [city, temp, desc, ts]
     )
 
