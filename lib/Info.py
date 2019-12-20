@@ -10,10 +10,10 @@ def get_weather_by_city(city_name):
     
     weather_json = res.json()
 
-    if weather_json['cod'] == 404:
+    if weather_json['cod'] == '404':
         print("沒有這個城市哦！")
-        return
-
+        return False
+    
     weathet_temp = weather_json['main']['temp']
     weather_main = weather_json['weather'][0]['main']
     

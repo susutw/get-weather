@@ -1,6 +1,7 @@
 import requests
 import json
 import sys
+import time
 
 # lib
 import lib.Info as Info
@@ -18,13 +19,18 @@ def main():
         
         city_name = input('請輸入要查詢的城市：')
         value = Info.get_weather_by_city(city_name)
+        if value == False:
+            return
+
         print(value)
         # 回存
         # result = DB.xxx
+        ts = int(time.time())
+        result = DB.insert_weather_info(value["city"], value["temp"], value["main"], ts)
         return
     
     if action == 'weather_record':
-        pass
+        DB.latest_five_value()
     
     return
 
