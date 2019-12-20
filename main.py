@@ -18,14 +18,11 @@ def main():
     if action == 'search_by_city':
         
         city_name = input('請輸入要查詢的城市：')
-        value = Info.get_weather_by_city(city_name)
+        value = Info.get_weather_by_city(city_name.lower())
         if value == False:
             return
 
-        c_temp = round(value['temp'] - 273.15, 2) # 攝氏
-        ts = int(time.time())
-
-        result = DB.insert_weather_info(value['city'], value['temp'], value['main'], ts)
+        result = DB.insert_weather_info(value['city'], value['temp'], value['main'], value['timestamp'])
         return
     
     if action == 'weather_record':
