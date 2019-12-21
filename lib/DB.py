@@ -4,6 +4,20 @@ import time
 
 conn = sqlite3.connect('weather.db')
 
+conn.execute(
+    '''
+    CREATE TABLE IF NOT EXISTS weather_list
+    (
+        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        city CHARACTER(20) NOT NULL,
+        temperature FLOAT NOT NULL,
+        description CHARACTER(20) NOT NULL,
+        create_timestamp TINYINT NOT NULL,
+        delete_timestamp TINYINT NOT NULL
+    );
+    '''
+)
+
 # get old value in DB
 
 def latest_five_value():
