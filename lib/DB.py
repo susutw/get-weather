@@ -19,7 +19,6 @@ conn.execute(
 )
 
 # get old value in DB
-
 def latest_five_value():
     # 從尾到頭讀取，抓五筆
     record_list = conn.execute(
@@ -30,18 +29,15 @@ def latest_five_value():
         LIMIT 5
         '''
     )
-
     print('---------------------------------------(*’ｰ’*)----------------------------------------')
     for row in record_list:
         time_array = time.strftime("%Y/%m/%d %H:%M", time.localtime(row[4]))
         c_temp = round(row[2] - 273.15, 2)
-        print('[ID:{}] => 城市：{}，溫度：{}，氣象：{}，查詢時間：{}。'.format(row[0], row[1], c_temp, row[3], time_array))
-    
+        print('[ID:{}] => 城市：{}，溫度：{}，氣象：{}，查詢時間：{}。'.format(row[0], row[1], c_temp, row[3], time_array))    
     conn.commit()
     conn.close()
 
 # save to DB
-
 def insert_weather_info(city, temp, desc, ts):
     conn.execute(
         '''
@@ -49,6 +45,5 @@ def insert_weather_info(city, temp, desc, ts):
         VALUES (?, ?, ?, ?, 0)
         ''', [city, temp, desc, ts]
     )
-
     conn.commit()
     conn.close()

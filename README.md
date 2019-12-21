@@ -1,8 +1,10 @@
 # Get Weather
 
+> 部署環境：Python 3.7.5
+
 ## 可能會需要安裝的套件
 * `pip3 install requests2`
-* `brew install sqlite`
+* `brew install sqlite` (for macOS) or [Download Here](https://www.sqlite.org/download.html)
 
 ## Quick Start
 
@@ -11,6 +13,7 @@
 `cd get-weather`
 
 功能介紹：`python3 main.py`
+（使用參數來指定功能，詳細輸入方式可看功能簡介）
 
 ## 功能簡介
 
