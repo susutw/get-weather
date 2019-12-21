@@ -12,7 +12,7 @@ def get_weather_by_city(city_name):
     weather_json = res.json()
 
     if weather_json['cod'] == '404':
-        print("沒有這個城市哦！")
+        print("沒有這個城市的說(|||ﾟдﾟ)")
         return False
     
     weathet_temp = weather_json['main']['temp']
@@ -28,3 +28,17 @@ def get_weather_by_city(city_name):
     weather_value = {"city": city_name, "temp": weathet_temp, 'main': weather_main, 'timestamp': ts}
     
     return weather_value
+
+def no_argument():
+    show_log = '''
+        嗨！請輸入參數！
+        以下是我們的功能表，請把他帶到程式後面告訴我們你需要什麼
+        （例：python3 main.py search_by_city）
+
+        search_by_city
+        => 想知道任何城市最即時的溫度訊息嗎？輸入此參數，快速查詢你要的資料！
+
+        weather_record
+        => 想知道之前的查詢記錄嗎？輸入此參數，可看到最新的五筆紀錄！
+    '''
+    return show_log
